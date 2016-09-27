@@ -1,0 +1,39 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'eu.appsatori:gradle-fatjar-plugin:0.3'
+  }
+}
+
+group 'sample'
+version '1.0.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'eu.appsatori.fatjar'
+sourceCompatibility = 1.8
+
+repositories {
+	     mavenCentral()
+}
+
+dependencies {
+	     testCompile 'junit:junit:4.12'
+	     compile 'com.sparkjava:spark-core:2.3'
+	     compile 'com.sparkjava:spark-template-thymeleaf:2.3'
+	     compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
+	     compile 'ch.qos.logback:logback-classic:1.0.12'
+	     compile 'org.slf4j:slf4j-api:1.7.9'
+}
+
+fatJar {
+       baseName = 'spark-sample'
+       manifest {
+       		attributes('Main-Class' : 'sample.spark.Main')
+		}
+}
+
+task helloWorld << {
+     println "hello gradle world"
+}

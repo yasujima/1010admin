@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>BookStore</title>
+</head>
+<body>
+    <h1 th:text="${shopName}">BookStore</h1>
+    <ul>
+        <li th:each="book : ${books}" th:text="${book}">hoge</li>
+    </ul>
+    <h1 th:text="${name}">name hoge</h1>
+</body>
+</html>
