@@ -37,3 +37,14 @@ fatJar {
 task helloWorld << {
      println "hello gradle world"
 }
+
+task run(dependsOn:jar) << {
+  javaexec { 
+    main="-jar";
+    args = [
+      "-Dlogback.configurationFile=./logback.xml",
+      "build/libs/spark-sample-1.0.0-SNAPSHOT.jar"
+      ]
+  }
+}
+ 

@@ -67,11 +67,6 @@ public class ServerInitializer {
 		return new ModelAndView(map, "admin/index");},
 	    new ThymeleafTemplateEngine(resolv));
 
-	get("/admin/conf/:conf", (req, res) -> {
-		Map map = new HashMap();
-		map.put("conf", req.params("conf"));
-		return new ModelAndView(map, "admin/index");},
-	    new ThymeleafTemplateEngine(resolv));
     }
 	
 }
