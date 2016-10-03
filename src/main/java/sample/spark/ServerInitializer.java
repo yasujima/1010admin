@@ -18,6 +18,11 @@ import org.slf4j.LoggerFactory;
 public class ServerInitializer {
 
     public ServerInitializer() {
+
+	StatTailer tailer = new StatTailer();
+	tailer.start();
+	LoggerFactory.getLogger(this.getClass()).info("XXXX tailer start");
+	
 	TemplateResolver resolv = new TemplateResolver();
 	resolv.setTemplateMode("LEGACYHTML5");
 	resolv.setPrefix("templates/");
