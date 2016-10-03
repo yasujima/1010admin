@@ -42,7 +42,7 @@ task run(dependsOn:jar) << {
   javaexec { 
     main="-jar";
     args = [
-      "-Dlogback.configurationFile=./logback.xml",
+      "-Dlogback.configurationFile=conf/logback.xml",
       "build/libs/spark-sample-1.0.0-SNAPSHOT.jar"
       ]
   }
