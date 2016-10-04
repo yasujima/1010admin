@@ -15,14 +15,15 @@ import org.thymeleaf.resourceresolver.ClassLoaderResourceResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ServerInitializer {
+public class ServerInitializer
+{
 
     public ServerInitializer() {
 
-	StatTailer tailer = new StatTailer();
-	tailer.start();
+	StatTailer tailer = new StatTailer(this);
+	tailer.start(null);
 	LoggerFactory.getLogger(this.getClass()).info("XXXX tailer start");
-	
+
 	TemplateResolver resolv = new TemplateResolver();
 	resolv.setTemplateMode("LEGACYHTML5");
 	resolv.setPrefix("templates/");
@@ -34,11 +35,15 @@ public class ServerInitializer {
 	setSample(resolv);
 	setRoute(resolv);
     }
-    
+
+    public void updateStat(String str) {
+	LoggerFactory.getLogger(this.getClass()).info("!!!!! " + str);
+    }
+
     private void configure() {
 	staticFileLocation("/webapp");
     }
-    
+
     private void setSample(TemplateResolver resolv) {
 	Map map = new HashMap();
 	map.put("name", "Sam");
@@ -62,7 +67,7 @@ public class ServerInitializer {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	logger.info("################# hello info");
 	logger.debug("################# hello debug");
-	
+
 	before("/admin/", (req, res) -> {
 		res.redirect("/admin/dashboard");});
 
@@ -73,5 +78,4 @@ public class ServerInitializer {
 	    new ThymeleafTemplateEngine(resolv));
 
     }
-	
 }

@@ -4,6 +4,6 @@ while true;
 do
     i=$(($i+1));
     echo "$i" >> ../xx.txt;
-    sleep 1;
+    sleep 3;
 done
 
