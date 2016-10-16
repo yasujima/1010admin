@@ -34,6 +34,7 @@ public class ServerInitializer
 	configure();
 	setSample(resolv);
 	setRoute(resolv);
+	setWebSocket(resolv);
     }
 
     public void updateStat(String str) {
@@ -77,5 +78,10 @@ public class ServerInitializer
 		return new ModelAndView(map, "admin/index");},
 	    new ThymeleafTemplateEngine(resolv));
 
+    }
+
+    private void setWebSocket(TemplateResolver resolv) {
+	webSocket("/wsstat", WebSocketHandler.class);
+	init();
     }
 }
