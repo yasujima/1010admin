@@ -1,13 +1,14 @@
 
 $(document).ready(function(){
 
-    var connection = new WebSocket("ws://" + "192.168.26.53:4567" + "/wsstat");
+    var connection = new WebSocket("ws://" + location.host + "/wsstat");
     function onOpen(event) {
 	console.log("### onOPEN");
 	connection.send(">>>>>>>>>>>>> opened");
     }
     function onMessage(event) {
 	console.log("### onMessage : " + event.data);
+	$("#statusdisplay").text("##onMessage : " + event.data);
     }
 
     function onClose(event) {

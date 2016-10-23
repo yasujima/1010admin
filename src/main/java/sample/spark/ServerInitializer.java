@@ -39,6 +39,7 @@ public class ServerInitializer
 
     public void updateStat(String str) {
 	LoggerFactory.getLogger(this.getClass()).info("!!!!! " + str);
+	WebSocketHandler.sendAll(str);
     }
 
     private void configure() {
