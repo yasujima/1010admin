@@ -32,9 +32,9 @@ public class ServerInitializer
 	resolv.setResourceResolver(new ClassLoaderResourceResolver());
 
 	configure();
+	setWebSocket(resolv);
 	setSample(resolv);
 	setRoute(resolv);
-	setWebSocket(resolv);
     }
 
     public void updateStat(String str) {
