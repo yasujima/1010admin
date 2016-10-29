@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.Arrays;
 import spark.ModelAndView;
 import spark.template.thymeleaf.*;
-
 import org.thymeleaf.context.*;
 import org.thymeleaf.templateresolver.*;
 import org.thymeleaf.resourceresolver.ClassLoaderResourceResolver;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,12 +53,11 @@ public class ServerInitializer
 	map.put("books", books);
 
 	get("/hello", (req, res) -> "Hello Spark!!");
-
-	get("/name/:name", (req, res) -> {
+	get("/name/:name",
+	    (req, res) -> {
 		map.put("name", req.params("name"));
 		return new ModelAndView(map, "name");},
 	    new ThymeleafTemplateEngine(resolv));
-
 	get("/echo/:name", (req, res)-> "echo: " + req.params("name"));
     }
 
@@ -78,7 +75,6 @@ public class ServerInitializer
 		map.put("menu", req.params("menu"));
 		return new ModelAndView(map, "admin/index");},
 	    new ThymeleafTemplateEngine(resolv));
-
     }
 
     private void setWebSocket(TemplateResolver resolv) {

@@ -1,27 +1,25 @@
 
-$(document).ready(function(){
+$(document).ready(function() {
 
     var connection = new WebSocket("ws://" + location.host + "/wsstat");
-    function onOpen(event) {
+
+    connection.onopen = function (event) {
 	console.log("### onOPEN");
 	connection.send(">>>>>>>>>>>>> opened");
     }
-    function onMessage(event) {
+    connection.onmessage = function (event) {
 	console.log("### onMessage : " + event.data);
-	$("#statusdisplay").text("##onMessage : " + event.data);
+	var stat = JSON.parse(event.data);
+	$("#showcount").text(stat.id);
+	$("#showactsby").text(stat.actsby?"ACT":"SBY");
+	$("#showccalls").text(stat.calls);
+	$("#showcpuusage").text(stat.cpuusage);
     }
-
-    function onClose(event) {
+    connection.onclose = function (event) {
 	console.log("### onClose");
     }
-
-    function onError(event) {
+    connection.onerror = function (event) {
 	console.log("### onError " * event.data);
     }
-
-    connection.onopen = onOpen;
-    connection.onmessage = onMessage;
-    connection.onclose = onClose;
-    connection.onerror = onError;
 
 });

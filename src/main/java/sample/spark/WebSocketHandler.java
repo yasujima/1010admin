@@ -6,14 +6,12 @@ import org.eclipse.jetty.websocket.api.annotations.*;
 import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebSocket
 public class WebSocketHandler {
 
-    private String sendre, msg;
     private static List<Session> users = new ArrayList<Session>();
 
     @OnWebSocketConnect
@@ -40,34 +38,33 @@ public class WebSocketHandler {
 
     static class Report {
 	public String id;
+	public boolean actsby;
 	public String calls;
 	public String cpuusage;
-	public Report(String i, String c, String cpu) {
+	public Report(String i, boolean as, String c, String cpu) {
 	    id = i;
+	    actsby = as;
 	    calls = c;
 	    cpuusage = cpu;
 	};
     };
-	    
 
     public static void sendAll(String message) {
-	try {	
-	Report rep = new Report(message, "0", "nodata");
-	ObjectMapper mapper = new ObjectMapper();
+	try {
+	    Report rep = new Report(message, true, message, "nodata");
+	    ObjectMapper mapper = new ObjectMapper();
 
-	String json = mapper.writeValueAsString(rep);
-	
-	users.forEach(user -> {try {
-		    user.getRemote().sendString(json);
-		} catch (Exception e) {
-		    e.printStackTrace();
-		    LoggerFactory.getLogger("").info("***** sendAll exception " + e.toString());
-		}
-	    });
+	    String json = mapper.writeValueAsString(rep);
+
+	    users.forEach(user -> {try {
+			user.getRemote().sendString(json);
+		    } catch (Exception e) {
+			e.printStackTrace();
+			LoggerFactory.getLogger("").info("***** sendAll exception " + e.toString());
+		    }
+		});
 	} catch (JsonProcessingException e) {
 	    LoggerFactory.getLogger("").info("***** sendAll exception " + e.toString());
 	}
     }
 }
-
-
