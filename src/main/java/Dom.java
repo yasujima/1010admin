@@ -20,18 +20,17 @@ public class Dom {
     public void execxml(String fname) {
 	SAXReader reader = new SAXReader();
 	try {
-	    
 	    Document doc = reader.read(fname);
+	    /*
 	    Element root = doc.getRootElement();
 	    for (Iterator i = root.elementIterator(); i.hasNext();) {
 		Element elem = (Element) i.next();
 		Element elem2 = elem.element("job");
 		System.out.println(elem2.getStringValue());
 	    }
-
-	    List nodes = doc.selectNodes("//job");
-	    for (Iterator i = nodes.iterator(); i.hasNext();) {
-		Node n = (Node) i.next();
+	    */
+	    List<Node> nodes = doc.selectNodes("//job/@grade");
+	    for (Node n : nodes) {
 		System.out.println(n.getText());
 	    }
 		

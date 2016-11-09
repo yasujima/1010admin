@@ -1,0 +1,14 @@
+<persons>
+  <person>
+    <name>aaa</name>
+    <job grade="mid">Programmer</job>
+  </person>
+  <person>
+    <name>bbb</name>
+    <job grade="high">monster</job>
+  </person>
+  <person>
+    <name>ccc</name>
+    <job grade="low">chocolate</job>
+  </person>
+</persons>
