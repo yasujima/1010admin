@@ -8,6 +8,22 @@
 * spark java を使った、Webアプリケーション
 * ビルドツールにはgradleを使用している
 
+# 動かし方
+
+下記setupに基づいて、gradle環境を整えたのち、gradleコマンドにてコンパイルと実行が可能
+
+* gradle fatJar
+
+spark-java における、いわゆるfatJar形式のjarファイルを作成する。
+
+* gradle run
+
+fatJarを指定して、gradeプロセスにて簡易実行。
+
+    localhost:4567/admin
+    
+にてjetty web server が起動する。
+
 # setup
 
 ubuntu 16.04での環境設定
