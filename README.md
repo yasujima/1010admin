@@ -12,28 +12,28 @@
 
 ubuntu 16.04での環境設定
 
-* java setup
+## java setup
 
     $ sudo add-apt-repository ppa:webupd8team/java
     $ sudo apt-get update
     $ sudo apt-get install oracle-java8-installer
 
-* gradle setup
+## gradle setup
 
     $ curl -s api.sdkman.io | bash
     $ sdk install gradle
 
-* git install
+## git install
 
     $ sudo apt install git
 
-* screen install
+## screen install
 
     $ sudo apt install git
 
-* emacs setting
+## emacs setting
 
-** gradle mode and groovy mode
+gradle mode and groovy mode
 
 .emacs.d 配下にinit.elを生成し、下記を追加
 
@@ -58,7 +58,9 @@ emacs で以下のコマンド
     (require 'gradle-mode)
     (gradle-mode 1)
 
-# gradle command 
+----
+
+# gradle commands
 
 * gradle fatJar to create jar file
 
